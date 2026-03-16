@@ -61,6 +61,73 @@ The system works in the following steps:
 
 ---
 
+## Sample Implementation Code
+
+Below is a simple example of how the chatbot logic works using Python.
+
+```python
+# Simple chatbot knowledge base
+
+responses = {
+    "leave policy": "Employees are allowed 20 days of annual leave per year.",
+    "reset password": "You can reset your password through the IT support portal.",
+    "company events": "Company events are announced through the HR portal."
+}
+
+def chatbot_response(user_input):
+    user_input = user_input.lower()
+
+    for key in responses:
+        if key in user_input:
+            return responses[key]
+
+    return "Sorry, I could not find information related to your query."
+```
+
+### Document Processing Example
+
+```python
+import pdfplumber
+
+def extract_text_from_pdf(file_path):
+    text = ""
+
+    with pdfplumber.open(file_path) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text()
+
+    return text
+```
+
+### Bad Language Filter
+
+```python
+bad_words = ["idiot", "stupid", "damn"]
+
+def check_language(user_input):
+    words = user_input.lower().split()
+
+    for word in words:
+        if word in bad_words:
+            return "Please avoid using inappropriate language."
+
+    return None
+```
+
+### OTP Based Two Factor Authentication
+
+```python
+import random
+
+def generate_otp():
+    otp = random.randint(100000,999999)
+    return otp
+
+otp = generate_otp()
+print("OTP sent to email:", otp)
+```
+
+
 ## Modules
 
 * Chatbot Query Processing
